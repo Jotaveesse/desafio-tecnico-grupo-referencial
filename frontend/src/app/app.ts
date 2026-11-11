@@ -1,8 +1,8 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Upload } from './upload/upload';
 
 @Component({
-  imports: [RouterOutlet],
+  imports: [Upload],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',

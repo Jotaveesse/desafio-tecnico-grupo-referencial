@@ -1,0 +1,1 @@
+Número da linha inválida exibido é contado a partir da primeira linha, incluindo cabeçalho, começando do 1. Isso permite verificar qual é a linha que deu problema mais facilmente se o arquivo CSV for aberto em um editor de planilhas.

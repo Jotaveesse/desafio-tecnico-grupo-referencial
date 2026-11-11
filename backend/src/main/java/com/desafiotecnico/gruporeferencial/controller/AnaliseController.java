@@ -19,9 +19,11 @@ import org.springframework.web.multipart.MultipartFile;
 import com.desafiotecnico.gruporeferencial.model.Episodio;
 import com.desafiotecnico.gruporeferencial.model.LinhaInvalida;
 import com.desafiotecnico.gruporeferencial.model.LinhaValida;
+import com.desafiotecnico.gruporeferencial.model.RankingVeiculo;
 import com.desafiotecnico.gruporeferencial.model.ResultadoParser;
 import com.desafiotecnico.gruporeferencial.service.DetectorEpisodios;
 import com.desafiotecnico.gruporeferencial.service.ParserLinhas;
+import com.desafiotecnico.gruporeferencial.service.RankingService;
 
 @RestController
 @RequestMapping("/api/analises")
@@ -52,12 +54,12 @@ public class AnaliseController {
 
         List<Episodio> episodios = DetectorEpisodios.detectar(linhasValidas);
 
+        List<RankingVeiculo> ranking = RankingService.gerar(episodios);
+
         return ResponseEntity.ok(Map.of(
-                "nomeArquivo", arquivo.getOriginalFilename(),
-                "totalLinhas", linhas.size(),
-                "cabecalho", linhas.get(0),
                 "linhasValidas", linhasValidas,
                 "linhasInvalidas", linhasInvalidas,
-                "episodios", episodios));
+                "episodios", episodios,
+                "ranking", ranking));
     }
 }

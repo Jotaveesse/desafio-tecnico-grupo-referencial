@@ -37,28 +37,28 @@ public class ParserLinhas {
                 }
 
                 LinhaValida linha = new LinhaValida();
-                linha.placa = campos[0].toUpperCase().trim();
-                linha.dataHora = LocalDateTime.parse(campos[1]);
+                linha.setPlaca(campos[0].toUpperCase().trim());
+                linha.setDataHora(LocalDateTime.parse(campos[1]));
 
                 try {
-                    linha.velocidade = format.parse(campos[2]).doubleValue();
+                    linha.setVelocidade(format.parse(campos[2]).doubleValue());
                 } catch (ParseException e) {
                     adicionarLinhaInvalida(linhasInvalidas, totalLinhasLidas, "Erro ao parsear velocidade");
                     continue;
                 }
 
                 try {
-                    linha.limiteVelocidade = format.parse(campos[3]).doubleValue();
+                    linha.setLimiteVelocidade(format.parse(campos[3]).doubleValue());
                 } catch (ParseException e) {
                     adicionarLinhaInvalida(linhasInvalidas, totalLinhasLidas, "Erro ao parsear limite de velocidade");
                     continue;
                 }
 
-                if (linha.limiteVelocidade <= 0) {
+                if (linha.getLimiteVelocidade() <= 0) {
                     adicionarLinhaInvalida(linhasInvalidas, totalLinhasLidas, "Limite de velocidade é inválido");
                     continue;
                 }
-                if (linha.velocidade <= 0) {
+                if (linha.getVelocidade() <= 0) {
                     adicionarLinhaInvalida(linhasInvalidas, totalLinhasLidas, "Velocidade é inválida");
                     continue;
                 }
@@ -81,8 +81,8 @@ public class ParserLinhas {
 
     private static void adicionarLinhaInvalida(List<LinhaInvalida> linhasInvalidas, int numeroLinha, String motivo) {
         LinhaInvalida linhaInvalida = new LinhaInvalida();
-        linhaInvalida.numeroLinha = numeroLinha + 1; // +1 porque considera o cabeçalho
-        linhaInvalida.motivo = motivo;
+        linhaInvalida.setNumeroLinha(numeroLinha + 1); // +1 porque considera o cabeçalho
+        linhaInvalida.setMotivo(motivo);
         linhasInvalidas.add(linhaInvalida);
     }
 }

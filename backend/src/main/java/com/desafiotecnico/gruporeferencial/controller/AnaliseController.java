@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.desafiotecnico.gruporeferencial.model.Episodio;
 import com.desafiotecnico.gruporeferencial.model.LinhaInvalida;
 import com.desafiotecnico.gruporeferencial.model.LinhaValida;
 import com.desafiotecnico.gruporeferencial.model.ResultadoParser;
+import com.desafiotecnico.gruporeferencial.service.DetectorEpisodios;
 import com.desafiotecnico.gruporeferencial.service.ParserLinhas;
 
 @RestController
@@ -48,11 +50,14 @@ public class AnaliseController {
         List<LinhaValida> linhasValidas = resultadoParser.validas();
         List<LinhaInvalida> linhasInvalidas = resultadoParser.invalidas();
 
+        List<Episodio> episodios = DetectorEpisodios.detectar(linhasValidas);
+
         return ResponseEntity.ok(Map.of(
                 "nomeArquivo", arquivo.getOriginalFilename(),
                 "totalLinhas", linhas.size(),
                 "cabecalho", linhas.get(0),
                 "linhasValidas", linhasValidas,
-                "linhasInvalidas", linhasInvalidas));
+                "linhasInvalidas", linhasInvalidas,
+                "episodios", episodios));
     }
 }

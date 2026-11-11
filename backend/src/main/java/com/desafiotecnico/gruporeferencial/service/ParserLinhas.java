@@ -58,7 +58,7 @@ public class ParserLinhas {
                     adicionarLinhaInvalida(linhasInvalidas, totalLinhasLidas, "Limite de velocidade é inválido");
                     continue;
                 }
-                if (linha.getVelocidade() <= 0) {
+                if (linha.getVelocidade() < 0) {
                     adicionarLinhaInvalida(linhasInvalidas, totalLinhasLidas, "Velocidade é inválida");
                     continue;
                 }

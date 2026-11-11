@@ -1,2 +1,3 @@
 Número da linha inválida exibido é contado a partir da primeira linha, incluindo cabeçalho, começando do 1. Isso permite verificar qual é a linha que deu problema mais facilmente se o arquivo CSV for aberto em um editor de planilhas.
-Velocidade ou limite de velocidade igual à zero foram considerado inválidos também e suas linhas ignoradas.
+Linhas com limite de velocidade igual à zero também foram consideradas inválidos e suas linhas ignoradas.
+Placas com letras minúsculas foram convertidas para letrar maiúculas.

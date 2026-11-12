@@ -15,7 +15,7 @@ public enum Gravidade {
         return pontos;
     }
 
-    public static Gravidade doExcesso(double excessoPercentual) {
+    public static Gravidade fromExcesso(double excessoPercentual) {
         if (excessoPercentual > 50)
             return GRAVISSIMA;
         if (excessoPercentual > 20)

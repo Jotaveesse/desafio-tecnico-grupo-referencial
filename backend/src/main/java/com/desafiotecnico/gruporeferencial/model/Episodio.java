@@ -72,7 +72,7 @@ public class Episodio {
 
         if (excessoPercentual > excessoMaximoPercentual) {
             excessoMaximoPercentual = excessoPercentual;
-            setGravidade(Gravidade.doExcesso(excessoMaximoPercentual));
+            setGravidade(Gravidade.fromExcesso(excessoMaximoPercentual));
         }
 
         if (velocidadeMaximaKmh < linha.getVelocidade()) {

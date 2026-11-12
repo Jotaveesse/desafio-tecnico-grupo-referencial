@@ -2,8 +2,6 @@ package com.desafiotecnico.gruporeferencial.model;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Episodio {
     private String placa;
@@ -12,7 +10,6 @@ public class Episodio {
     private double velocidadeMaximaKmh;
     private double excessoMaximoPercentual;
     private Gravidade gravidade;
-    private List<LinhaValida> linhas = new ArrayList<>();
 
     public String getPlaca() {
         return placa;
@@ -62,12 +59,7 @@ public class Episodio {
         this.gravidade = doExcesso;
     }
 
-    public List<LinhaValida> getLinhas() {
-        return linhas;
-    }
-
     public void adicionar(LinhaValida linha) {
-        linhas.add(linha);
         double excessoPercentual = getExcessoPercentual(linha);
 
         if (excessoPercentual > excessoMaximoPercentual) {

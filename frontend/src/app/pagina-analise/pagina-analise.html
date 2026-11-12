@@ -1,0 +1,12 @@
+<app-upload [carregando]="carregando()" (arquivoEnviado)="analisar($event)" />
+
+@if (erro()) {
+<p class="erro">{{ erro() }}</p>
+}
+
+@if (resposta(); as resp) {
+<app-resumo [resumo]="resp.resumo" />
+<app-ranking [ranking]="resp.ranking" />
+<app-episodios [episodios]="resp.episodios" />
+<app-linhas-invalidas [linhas]="resp.linhasInvalidas" />
+}

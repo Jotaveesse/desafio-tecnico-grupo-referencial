@@ -1,12 +1,10 @@
-import { Component, signal } from '@angular/core';
-import { Upload } from './upload/upload';
+import { Component } from '@angular/core';
+import { PaginaAnalise } from './pagina-analise/pagina-analise';
 
 @Component({
-  imports: [Upload],
   selector: 'app-root',
-  styleUrl: './app.css',
+  imports: [PaginaAnalise],
   templateUrl: './app.html',
+  styleUrl: './app.css',
 })
-export class App {
-  protected readonly title = signal('frontend');
-}
+export class App {}

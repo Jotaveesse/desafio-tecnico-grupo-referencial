@@ -1,0 +1,29 @@
+<section>
+    <h3>Ranking de veículos</h3>
+    @if (ranking().length === 0) {
+    <p>Nenhum veículo com episódios de excesso.</p>
+    } @else {
+    <div class="tabela-scroll">
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Placa</th>
+                    <th>Pontos</th>
+                    <th>Maior velocidade (km/h)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (v of ranking(); track v.placa; let i = $index) {
+                <tr>
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ v.placa }}</td>
+                    <td>{{ v.totalPontos }}</td>
+                    <td>{{ v.maiorVelocidadeKmh }}</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    }
+</section>

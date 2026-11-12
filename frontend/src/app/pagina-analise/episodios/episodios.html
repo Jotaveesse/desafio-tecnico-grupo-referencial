@@ -1,0 +1,47 @@
+<section>
+    <h3>Episódios de excesso</h3>
+    <label>
+        Gravidade:
+        <select (change)="onFiltroChange($event)">
+            <option value="TODAS">Todas</option>
+            <option value="LEVE">Leve</option>
+            <option value="GRAVE">Grave</option>
+            <option value="GRAVISSIMA">Gravíssima</option>
+        </select>
+    </label>
+
+    @if (filtrados().length === 0) {
+    <p>Nenhum episódio para exibir.</p>
+    } @else {
+    <div class="tabela-scroll">
+        <table>
+            <thead>
+                <tr>
+                    <th>Placa</th>
+                    <th>Início</th>
+                    <th>Fim</th>
+                    <th>Duração (s)</th>
+                    <th>Vel. máx. (km/h)</th>
+                    <th>Excesso máx. (%)</th>
+                    <th>Gravidade</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (e of filtrados(); track $index) {
+                <tr>
+                    <td>{{ e.placa }}</td>
+                    <td>{{ e.inicio | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
+                    <td>{{ e.fim | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
+                    <td>{{ e.duracaoSegundos }}</td>
+                    <td>{{ e.velocidadeMaximaKmh }}</td>
+                    <td>{{ e.excessoMaximoPercentual }}</td>
+                    <td>
+                        <span [class]="'selo ' + e.gravidade.toLowerCase()">{{ e.gravidade }}</span>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    }
+</section>

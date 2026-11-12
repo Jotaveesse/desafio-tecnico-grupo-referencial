@@ -16,14 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.desafiotecnico.gruporeferencial.model.Episodio;
-import com.desafiotecnico.gruporeferencial.model.LinhaInvalida;
-import com.desafiotecnico.gruporeferencial.model.LinhaValida;
-import com.desafiotecnico.gruporeferencial.model.RankingVeiculo;
-import com.desafiotecnico.gruporeferencial.model.ResultadoParser;
-import com.desafiotecnico.gruporeferencial.service.DetectorEpisodios;
-import com.desafiotecnico.gruporeferencial.service.ParserLinhas;
-import com.desafiotecnico.gruporeferencial.service.RankingService;
+import com.desafiotecnico.gruporeferencial.model.AnaliseResposta;
+import com.desafiotecnico.gruporeferencial.service.AnaliseService;
 
 @RestController
 @RequestMapping("/api/analises")
@@ -46,20 +40,12 @@ public class AnaliseController {
             }
         }
 
-        List<String> linhasConteudo = linhas.subList(1, linhas.size());
-
-        ResultadoParser resultadoParser = ParserLinhas.parse(linhasConteudo);
-        List<LinhaValida> linhasValidas = resultadoParser.validas();
-        List<LinhaInvalida> linhasInvalidas = resultadoParser.invalidas();
-
-        List<Episodio> episodios = DetectorEpisodios.detectar(linhasValidas);
-
-        List<RankingVeiculo> ranking = RankingService.gerar(episodios);
+        AnaliseResposta analiseResposta = AnaliseService.analisar(linhas);
 
         return ResponseEntity.ok(Map.of(
-                "linhasValidas", linhasValidas,
-                "linhasInvalidas", linhasInvalidas,
-                "episodios", episodios,
-                "ranking", ranking));
+                "resumo", analiseResposta.resumo(),
+                "episodios", analiseResposta.episodios(),
+                "ranking", analiseResposta.ranking(),
+                "linhasInvalidas", analiseResposta.linhasInvalidas()));
     }
 }

@@ -1,12 +1,8 @@
 <h2>Análise de leituras</h2>
 
-<input type="file" accept=".csv" (change)="onFileSelected($event)" />
-<button (click)="enviar()" [disabled]="!arquivo()">Enviar</button>
-
-@if (erro()) {
-<p style="color: red">{{ erro() }}</p>
-}
-
-@if (resposta()) {
-<pre>{{ resposta() | json }}</pre>
-}
+<div class="upload">
+    <input type="file" accept=".csv" (change)="onFileSelected($event)" />
+    <button (click)="enviar()" [disabled]="!arquivo() || carregando()">
+        {{ carregando() ? 'Enviando...' : 'Enviar' }}
+    </button>
+</div>

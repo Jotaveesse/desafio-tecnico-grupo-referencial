@@ -1,0 +1,25 @@
+<section>
+    <h3>Linhas inválidas ({{ linhas().length }})</h3>
+    @if (linhas().length === 0) {
+    <p>Nenhuma linha inválida.</p>
+    } @else {
+    <div class="tabela-scroll">
+        <table>
+            <thead>
+                <tr>
+                    <th>Linha</th>
+                    <th>Motivo</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (l of linhas(); track l.numeroLinha) {
+                <tr>
+                    <td>{{ l.numeroLinha }}</td>
+                    <td>{{ l.motivo }}</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    }
+</section>

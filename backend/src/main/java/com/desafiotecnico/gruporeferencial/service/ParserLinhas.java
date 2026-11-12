@@ -28,11 +28,11 @@ public class ParserLinhas {
                 continue;
             }
 
-            try {
-                String[] campos = linhaCSV.split(";");
+            String[] campos = linhaCSV.split(";");
 
+            try {
                 if (campos.length != 4) {
-                    adicionarLinhaInvalida(linhasInvalidas, totalLinhasLidas, "Quantidade de campos inválido");
+                    adicionarLinhaInvalida(linhasInvalidas, totalLinhasLidas, "Quantidade de campos inválida");
                     continue;
                 }
 
@@ -43,34 +43,38 @@ public class ParserLinhas {
                 try {
                     linha.setVelocidade(format.parse(campos[2]).doubleValue());
                 } catch (ParseException e) {
-                    adicionarLinhaInvalida(linhasInvalidas, totalLinhasLidas, "Erro ao parsear velocidade");
+                    adicionarLinhaInvalida(linhasInvalidas, totalLinhasLidas,
+                            "Erro ao extrair velocidade: '" + campos[2] + "'");
                     continue;
                 }
 
                 try {
                     linha.setLimiteVelocidade(format.parse(campos[3]).doubleValue());
                 } catch (ParseException e) {
-                    adicionarLinhaInvalida(linhasInvalidas, totalLinhasLidas, "Erro ao parsear limite de velocidade");
+                    adicionarLinhaInvalida(linhasInvalidas, totalLinhasLidas,
+                            "Erro ao extrair limite de velocidade: '" + campos[3] + "'");
                     continue;
                 }
 
                 if (linha.getLimiteVelocidade() <= 0) {
-                    adicionarLinhaInvalida(linhasInvalidas, totalLinhasLidas, "Limite de velocidade é inválido");
+                    adicionarLinhaInvalida(linhasInvalidas, totalLinhasLidas,
+                            "Limite de velocidade inválido: '" + linha.getLimiteVelocidade() + "'");
                     continue;
                 }
                 if (linha.getVelocidade() < 0) {
-                    adicionarLinhaInvalida(linhasInvalidas, totalLinhasLidas, "Velocidade é inválida");
+                    adicionarLinhaInvalida(linhasInvalidas, totalLinhasLidas,
+                            "Velocidade inválida: '" + linha.getVelocidade() + "'");
                     continue;
                 }
 
                 linhasValidas.add(linha);
 
             } catch (DateTimeParseException e) {
-                adicionarLinhaInvalida(linhasInvalidas, totalLinhasLidas, "Erro ao parsear data e hora");
+                adicionarLinhaInvalida(linhasInvalidas, totalLinhasLidas,
+                        "Erro ao extrair data e hora: '" + campos[1] + "'");
 
             } catch (Exception e) {
-                adicionarLinhaInvalida(linhasInvalidas, totalLinhasLidas, "Erro desconhecido ao parsear linha");
-
+                adicionarLinhaInvalida(linhasInvalidas, totalLinhasLidas, "Erro desconhecido ao extrair linha:");
             }
         }
 

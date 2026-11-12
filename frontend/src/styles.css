@@ -1,1 +1,132 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --cor-primaria: #1d4ed8;
+  --cor-texto: #1f2937;
+  --cor-fundo: #f5f7fa;
+  --cor-borda: #d1d5db;
+  --cor-leve: #16a34a;
+  --cor-grave: #d97706;
+  --cor-gravissima: #dc2626;
+}
+
+body {
+  margin: 0;
+  font-family:
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
+  color: var(--cor-texto);
+  background: var(--cor-fundo);
+}
+
+.pagina {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+}
+
+section {
+  background: white;
+  border: 1px solid var(--cor-borda);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin-top: 1rem;
+}
+
+h2 {
+  margin-top: 0;
+  text-align: center;
+}
+h3 {
+  margin: 0 0 0.75rem;
+}
+
+button {
+  background: var(--cor-primaria);
+  color: white;
+  border: 0;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+button:disabled {
+  background: var(--cor-borda);
+  cursor: not-allowed;
+}
+
+label {
+  display: inline-block;
+  padding-bottom: 12px;
+}
+
+.erro {
+  background: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  margin-top: 1rem;
+}
+
+.upload {
+  display: flex;
+  justify-content: center;
+}
+
+.resumo {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.resumo div {
+  flex: 1;
+  min-width: 140px;
+  text-align: center;
+  padding: 0.75rem;
+  background: #eff6ff;
+  border-radius: 6px;
+}
+.resumo strong {
+  display: block;
+  font-size: 1.5rem;
+}
+
+.tabela-scroll {
+  overflow-x: auto;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+th,
+td {
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid var(--cor-borda);
+}
+th {
+  background: #f3f4f6;
+  font-weight: 600;
+}
+tbody tr:hover {
+  background: #f9fafb;
+}
+
+.selo {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: white;
+}
+.selo.leve {
+  background: var(--cor-leve);
+}
+.selo.grave {
+  background: var(--cor-grave);
+}
+.selo.gravissima {
+  background: var(--cor-gravissima);
+}

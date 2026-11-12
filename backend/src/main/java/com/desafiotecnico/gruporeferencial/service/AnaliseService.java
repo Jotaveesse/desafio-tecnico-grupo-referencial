@@ -23,7 +23,7 @@ public class AnaliseService {
 
         List<RankingVeiculo> ranking = RankingService.gerar(episodios);
 
-        ResumoResposta resumo = new ResumoResposta(linhas.size(), linhasValidas.size(), episodios.size());
+        ResumoResposta resumo = new ResumoResposta(linhas.size() - 1, linhasValidas.size(), episodios.size());
 
         return new AnaliseResposta(resumo, episodios, ranking, linhasInvalidas);
     }
